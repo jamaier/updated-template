@@ -9,5 +9,21 @@ describe('Dice', () => {
     expect(dice.roundScore).toEqual(0);
     expect(dice.id).toEqual(1);
    });
-
+  
+  test('should roll random number between  1 and 6', () => {
+    const dice = new Dice();
+    dice.Roll();
+    expect(dice.number).toBeLessThanOrEqual(6);
+    expect(dice.number).toBeGreaterThanOrEqual(1);
   });
+
+// Dice.prototype.PlayRound = function() {
+//     if (this.number !== 1) {
+//         this.roundScore += this.number;
+//     } if (this.number === 1) {
+//         this.roundScore = 0;
+//     }
+//     return this.roundScore;
+// }
+
+});
