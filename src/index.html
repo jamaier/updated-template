@@ -1,28 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-  <title>Shape Tracker</title>
+    <title>Almost Farkle</title>
 </head>
 <body>
-  <h3>Enter three lengths to determine if they can make a triangle.</h3>
-  <form id="triangle-checker-form">
-    <label for="length1">Enter a number:</label>
-    <input id="length1" type="number">
-    <label for="length2">Enter a number:</label>
-    <input id="length2" type="number">
-    <label for="length3">Enter a number:</label>
-    <input id="length3" type="number">
-    <button type="submit">Submit</button>
-  </form>
-  <ul id="response"></ul>
-  <h3>Enter the lengths of a rectangle's two sides to determine its area.</h3>
-  <form id="rectangle-area-form">
-    <label for="rect-length1">Enter a number:</label>
-    <input id="rect-length1" type="number">
-    <label for="rect-length2">Enter a number:</label>
-    <input id="rect-length2" type="number">
-    <button type="submit">Submit</button>
-  </form>
-  <ul id="response2"></ul>
+    <h1> Welcome to Almost Farkle</h1> 
+    <p> Each turn, a player repeatedly rolls a die until either a 1 is rolled or the player decides to "hold":</p>
+<ul>
+    <li> If the player rolls a 1, they score nothing and it becomes the next player's turn.</li>
+    <li> The player rolls any other number, it is added to their turn total and the player's turn continues.</li>
+    <li> If a player chooses to "hold", their turn total is added to their score, and it becomes the next player's turn.</li>
+</ul>
+    <p> For example, the first player, Donald, begins a turn with a roll of 5. Donald could hold and score 5 points, but chooses to roll again. Donald rolls a 2, and could hold with a turn total of 7 points, but chooses to roll again. Donald rolls a 1, and must end his turn without scoring. The next player, Alexis, rolls the sequence 4-5-3-5-6, after which she chooses to hold, and adds her turn total of 23 points to her score.</p> 
+    
+    <div id="players">
+        <button class="hidden button" id="rematch">Rematch</button>
+        <div id="player-1">
+            <span id="p1-number"></span>
+            <button id="roll-dice-1"class="button">Roll Die</button>
+            <button id="hold-dice-1"class="button">Hold</button>
+            <h3>Player One Score: </h3>
+            <h4>This Round:</h4>
+            <span id="p1-round-score"></span>
+            <h4>Total:</h4>
+            <span id="p1-total-score"></span>
+        </div>
+        <div id="player-2">
+            <span id="p2-number"></span>
+            <button id="roll-dice-2" class="button">Roll Die</button>
+            <button id="hold-dice-2"class="button">Hold</button>
+            <h3>Player Two Score: </h3>
+            <h4>This Round:</h4>
+            <span id="p2-round-score"></span>
+            <h4>Total:</h4>
+            <span id="p2-total-score"></span>
+        </div>
+    </div>
+    
 </body>
 </html>
+
+
+<!-- // Business Logic -------
+function Dice(number, totalScore, roundScore, id) {
+    this.number = 0;
+    this.totalScore = 0;
+    this.roundScore = 0;
+    this.id = id;
+}
+
+Dice.prototype.Roll = function() {
+    this.number = Math.ceil(Math.random()*6);
+}
+
+Dice.prototype.PlayRound = function() {
+    if (this.number !== 1) {
+        this.roundScore += this.number;
+    } if (this.number === 1) {
+        this.roundScore = 0;
+    }
+    return this.roundScore;
+}
+
+Dice.prototype.TotalRound = function() {
+  this.totalScore += this.roundScore;
+  this.roundScore = 0;
+}
+
+Dice.prototype.DetermineWinner = function() {
+    if(this.totalScore >= 100 ){
+        console.log(this.totalScore);
+        return this.totalScore;
+    }
+    return false;
+}
+
+// UI Logic -------
+let dice1 = new Dice(0, 0, 0, 1);
+let dice2 = new Dice(0, 0, 0, 2);
+
+function displayPlayersScore(dice) {
+
+  if(dice.id === 1) {
+  const currentNumber1 = document.getElementById("p1-number");
+  const roundScore1 = document.getElementById("p1-round-score");
+  const totalScore1 = document.getElementById("p1-total-score");
+  currentNumber1.innerText = dice.number;
+  roundScore1.innerText = dice.roundScore;
+  totalScore1.innerText = dice.totalScore;
+  }
+
+  if(dice.id === 2) {
+  const currentNumber2 = document.getElementById("p2-number");
+  const roundScore2 = document.getElementById("p2-round-score");
+  const totalScore2 = document.getElementById("p2-total-score");
+  currentNumber2.innerText = dice.number;
+  roundScore2.innerText = dice.roundScore;
+  totalScore2.innerText = dice.totalScore;
+  }
+}
+
+window.addEventListener("load", function() {
+  let playersDiv = document.getElementById("players");
+  playersDiv.addEventListener("click", ButtonClick);
+});
+
+function ButtonClick(event) {
+  
+  if(event.target.id === "rematch") {
+    location.reload();
+  }
+
+  if(event.target.id === "roll-dice-1") {
+    dice1.Roll();
+    dice1.PlayRound();
+    displayPlayersScore(dice1);
+  } else
+
+  if(event.target.id === "hold-dice-1") {
+    dice1.TotalRound();
+    displayPlayersScore(dice1);
+  } else
+
+  if(event.target.id === "roll-dice-2") {
+    dice2.Roll();
+    dice2.PlayRound();
+    displayPlayersScore(dice2);
+  } else
+
+  if(event.target.id === "hold-dice-2") {
+    dice2.TotalRound();
+    displayPlayersScore(dice2);
+  } else {
+    return false;
+  }
+
+  if(dice1.DetermineWinner() !== false) {
+    displayWinner(dice1);
+  }
+
+  if(dice2.DetermineWinner() !== false){
+    displayWinner(dice2);
+  }
+}
+
+function displayWinner(dice) {
+  document.querySelector("h1").innerText = "Dice Player "+ dice.id + " is the Winner!";
+  document.getElementById("rematch").classList.remove("hidden");
+} -->
