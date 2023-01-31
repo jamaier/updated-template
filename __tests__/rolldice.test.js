@@ -1,25 +1,13 @@
-import Roll from './../src/js/rolldice.js';
+import Dice from './../src/js/rolldice.js';
 
-describe('Roll', () => {
-  test('generate a number', () => {
-    const rolldice = new Roll(6,4);
-    expect(rolldice.roll1).toEqual(6);
-    expect(rolldice.roll2).toEqual(4);
+describe('Dice', () => {
+
+   test('should create an object with a number, totalScore, roundScore, and id', () => {
+    const dice = new Dice (2, 2, 2, 1);
+    expect(dice.number).toEqual(2);
+    expect(dice.totalScore).toEqual(2);
+    expect(dice.roundScore).toEqual(2);
+    expect(dice.id).toEqual(1);
+   });
+
   });
-
-});
-//   let rectangle;
-
-//   beforeEach(() => {
-//     rectangle = new Rectangle(3,5);
-//   });
-
-//   test('should correctly create a rectangle object using two sides', () => {
-//     expect(rectangle.side1).toEqual(3);
-//     expect(rectangle.side2).toEqual(5);
-//   });
-
-//   test('should correctly get the area of a rectangle object', () => {
-//     expect(rectangle.getArea()).toEqual(15);
-//   });
-// });

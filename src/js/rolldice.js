@@ -1,5 +1,9 @@
 // Business Logic
-export default function Roll(roll1,roll2) {
-this.roll1 = roll1;
-this.roll2 = roll2;
-}
+
+
+export default function Dice(number, totalScore, roundScore, id) {
+    // this.number = 0;
+    // this.totalScore = 0;
+    // this.roundScore = 0;
+    // this.id = id;
+  }
