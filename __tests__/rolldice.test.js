@@ -11,19 +11,36 @@ describe('Dice', () => {
    });
   
   test('should roll random number between  1 and 6', () => {
-    const dice = new Dice();
-    dice.Roll();
-    expect(dice.number).toBeLessThanOrEqual(6);
-    expect(dice.number).toBeGreaterThanOrEqual(1);
+    const dice = new Dice(); //declare new object and call Construct
+    dice.Roll(); // call prototype
+    expect(dice.number).toBeLessThanOrEqual(6); // set guidelines for random number, high limit
+    expect(dice.number).toBeGreaterThanOrEqual(1); // set guidelines for random number, low limit
   });
 
-// Dice.prototype.PlayRound = function() {
-//     if (this.number !== 1) {
-//         this.roundScore += this.number;
-//     } if (this.number === 1) {
-//         this.roundScore = 0;
-//     }
-//     return this.roundScore;
-// }
+  test('should add numbers 2-6 to roundScore', () => {
+    const dice = new Dice();
+    dice.Roll();
+    dice.PlayRound();
+    expect(dice.roundScore).toBeLessThanOrEqual(6);
+    expect(dice.roundScore).toBeGreaterThan(1);
+    expect(dice.roundScore).toEqual(0);
+  });
+
+  test('if number === 1 the roundScore is 0', () => {
+    const dice = new Dice();
+    dice.Roll();
+    dice.PlayRound();
+    expect(dice.number).toEqual(1);
+    expect(dice.roundScore).toEqual(0);
+  });
+
+  test('should add roundScore to the totalScore' , () => {
+    const dice = new Dice();
+    dice.Roll();
+    dice.PlayRound();
+    dice.TotalRound();
+    expect(dice.roundScore).toEqual(0);
+  });
+  
 
 });
