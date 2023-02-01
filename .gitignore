@@ -2,29 +2,3 @@ node_modules/
 .DS_Store
 dist/
 coverage/
-
-# export default function Player(player1,player2) {
-# this.player1 = player1;
-# this.player2 = player2;
-# // let diceRoll = Math.round(Math.random()*6 + 1);
-# }
-
-# Player.prototype.throwDice = function() {
-# //   this.roll1 = Math.round(Math.random()*6 + 1);
-# //   return Roll;
-# }
-
-# describe('Roll', () => {
-#   test('generate a number', () => {
-#     const rolldice = new Roll(6,4);
-#     expect(rolldice.roll1).toEqual(6);
-#     expect(rolldice.roll2).toEqual(4);
-#   });
-
-#   test('generate a random number', () => {
-#     const rolldice = new Roll(6,4);
-#     expect(rolldice.roll1).toEqual(6);
-#     expect(rolldice.roll2).toEqual(4);
-#   });
-
-# });
