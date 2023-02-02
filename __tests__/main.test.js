@@ -1,5 +1,5 @@
 // Example import
-// import Dice from './../src/js/rolldice.js';
+// import example from './../src/js/main.js';
 
 
 

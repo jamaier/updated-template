@@ -1,5 +1,5 @@
 // Business Logic
 
 // Export example
-// export default function Dice()
+// export default function Example()
 
